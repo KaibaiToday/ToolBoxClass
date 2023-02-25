@@ -1,0 +1,8 @@
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\ToolBox.pdb
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\Resources\bg.png
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\D3DCompiler_47_cor3.dll
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\PenImc_cor3.dll
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\PresentationNative_cor3.dll
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\vcruntime140_cor3.dll
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\wpfgfx_cor3.dll
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\ToolBox.exe

@@ -1,0 +1,10 @@
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\ToolBox.pdb
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\Resources\bg.png
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\Resources\location.sta
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\Resources\range.sta
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\D3DCompiler_47_cor3.dll
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\PenImc_cor3.dll
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\PresentationNative_cor3.dll
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\vcruntime140_cor3.dll
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\wpfgfx_cor3.dll
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\ToolBox.exe

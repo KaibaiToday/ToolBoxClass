@@ -1,0 +1,66 @@
+﻿<UserControl x:Name="userControl" x:Class="ToolBox.View.Timer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ToolBox"
+             xmlns:rs="clr-namespace:ToolBox.Resources"
+             xmlns:view="clr-namespace:ToolBox.View"
+             mc:Ignorable="d" 
+             d:MinHeight="400" d:MinWidth="400">
+    <UserControl.RenderTransform>
+        <TranslateTransform x:Name="trans"/>
+    </UserControl.RenderTransform>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded" SourceName="userControl">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Y" Storyboard.TargetName="trans">
+                        <SplineDoubleKeyFrame KeyTime="0:0:0" Value="50"/>
+                        <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimation Storyboard.TargetName="userControl" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.4"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <UserControl.Resources>
+        <local:FontSizeConverter x:Key="FontSizeConverter"/>
+        <view:TimeBarSizeConverter x:Key="TimeBarSizeConverter"/>
+        <view:StartPointConverter x:Key="StartPointConverter"/>
+    </UserControl.Resources>
+    <Grid x:Name="grid" Background="White" Width="{Binding ActualWidth, ElementName=userControl, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=userControl, Mode=OneWay}">
+        <Label Content="{Binding size}"/>
+        <Label x:Name="TimeBar" ToolTip="{Binding time}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding ActualWidth,ElementName=TimeBar,Converter={StaticResource FontSizeConverter},Mode=OneWay}" Panel.ZIndex="1" Height="{Binding ActualHeight, Converter={StaticResource TimeBarSizeConverter}, ElementName=grid, Mode=OneWay}" Width="{Binding ActualHeight, ElementName=TimeBar, Mode=OneWay}" >
+            <Label.Template>
+                <ControlTemplate>
+                    <Grid x:Name="grid1" Height="{Binding ActualWidth, ElementName=grid1, Mode=OneWay}">
+                        <Grid Background="White" MinWidth="280" MinHeight="280" x:Name="grid" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ActualWidth, ElementName=grid1, Mode=OneWay}" Height="{Binding ElementName=grid1, Mode=OneWay}">
+                            <Grid.Resources>
+                                <view:EllipseSizeConverter x:Key="EllipseSizeConverter"/>
+                            </Grid.Resources>
+                            <Grid.Clip>
+                                <EllipseGeometry RadiusX="{Binding ActualWidth, Converter={StaticResource EllipseSizeConverter}, ElementName=grid, Mode=OneWay}" RadiusY="{Binding ActualWidth, Converter={StaticResource EllipseSizeConverter}, ElementName=grid, Mode=OneWay}">
+                                    <EllipseGeometry.Transform>
+                                        <TranslateTransform Y="{Binding X, RelativeSource={RelativeSource Self}}" X="{Binding ActualWidth, Converter={StaticResource EllipseSizeConverter}, ElementName=grid, Mode=OneWay}"/>
+                                    </EllipseGeometry.Transform>
+                                </EllipseGeometry>
+                            </Grid.Clip>
+                            <Ellipse x:Name="bg" Stroke="Wheat" Width="{TemplateBinding Width}" Height="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource Self}}" StrokeThickness="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Path Stroke="#FF288EFF" StrokeThickness="10" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                                <Path.Data>
+                                    <PathGeometry >
+                                        <PathFigure StartPoint="{Binding ActualWidth,ElementName=grid,Converter={StaticResource StartPointConverter}}">
+                                            <ArcSegment x:Name="ro" SweepDirection="Clockwise" IsLargeArc="{Binding IsLarge}" Size="{Binding size}" Point="{Binding EndPoint}"/>
+                                        </PathFigure>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" FontSize="{TemplateBinding FontSize}" Content="{TemplateBinding ToolTip}"/>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Label.Template>
+        </Label>
+    </Grid>
+</UserControl>

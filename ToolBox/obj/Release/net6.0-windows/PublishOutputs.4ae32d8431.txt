@@ -1,0 +1,6 @@
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\Resources\bg.png
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\ToolBox.exe
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\ToolBox.dll
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\ToolBox.deps.json
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\ToolBox.runtimeconfig.json
+D:\zjh\c#\ClassToolBox\ToolBox\bin\publish\ToolBox.pdb

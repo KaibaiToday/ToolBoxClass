@@ -1,0 +1,6 @@
+D:\zjh\c#\ClassToolBox\ToolBox\bin\Release\net6.0-windows\None_Runtime_Publish\Resources\bg.png
+D:\zjh\c#\ClassToolBox\ToolBox\bin\Release\net6.0-windows\None_Runtime_Publish\ToolBox.exe
+D:\zjh\c#\ClassToolBox\ToolBox\bin\Release\net6.0-windows\None_Runtime_Publish\ToolBox.deps.json
+D:\zjh\c#\ClassToolBox\ToolBox\bin\Release\net6.0-windows\None_Runtime_Publish\ToolBox.runtimeconfig.json
+D:\zjh\c#\ClassToolBox\ToolBox\bin\Release\net6.0-windows\None_Runtime_Publish\ToolBox.pdb
+D:\zjh\c#\ClassToolBox\ToolBox\bin\Release\net6.0-windows\None_Runtime_Publish\ToolBox.dll

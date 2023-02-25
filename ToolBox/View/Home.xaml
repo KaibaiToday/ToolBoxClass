@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="ToolBox.View.Home"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ToolBox.View"
+             xmlns:rs="clr-namespace:ToolBox.Resources"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" x:Name="userControl">
+    <UserControl.Resources>
+        <local:FontSizeConverter x:Key="FontSizeConverter"/>
+        <local:GridSizeConverter x:Key="GridSizeConverter"/>
+        <local:ButtonFontSizeConverter x:Key="ButtonFontSizeConverter"/>
+    </UserControl.Resources>
+    <UserControl.RenderTransform>
+        <TranslateTransform x:Name="trans"/>
+    </UserControl.RenderTransform>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded" SourceName="userControl">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Y" Storyboard.TargetName="trans">
+                        <SplineDoubleKeyFrame KeyTime="0:0:0" Value="50"/>
+                        <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimation Storyboard.TargetName="userControl" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.4"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid x:Name="grid" Background="#EFC9EDFF">
+        <Grid x:Name="index">
+            <Grid.DataContext>
+                <rs:BackgroundImage x:Name="BackgroundImage"/>
+            </Grid.DataContext>
+            <Image Stretch="UniformToFill" Source="{Binding CurrentImage}" x:Name="indexbg" Panel.ZIndex="1" Width="{Binding ActualWidth, ElementName=index, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=index, Mode=OneWay}"/>
+            <Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="Blurbg" Height="{Binding ActualHeight, ElementName=index, Mode=OneWay}" Panel.ZIndex="0" Width="{Binding ActualWidth, ElementName=index, Mode=OneWay}">
+                <Border.Background>
+                    <VisualBrush Visual="{Binding ElementName=indexbg}" Stretch="None"/>
+                </Border.Background>
+                <Border.Effect>
+                    <BlurEffect Radius="20"/>
+                </Border.Effect>
+            </Border>
+            <Grid x:Name="grid1" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" Width="{Binding ActualWidth, Converter={StaticResource GridSizeConverter}, ElementName=userControl, Mode=OneWay}">
+                <Grid.Background>
+                    <VisualBrush Visual="{Binding ElementName=Blurbg}" Stretch="None"/>
+                </Grid.Background>
+                <StackPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=grid1, Mode=OneWay}" Background="#4FFFFFFF">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="最大人数" />
+                        <TextBox x:Name="tb_max" Text="" Background="Transparent" TextAlignment="Center" Margin="0,5,0,0" TextChanged="tb_max_TextChanged" />
+                    </StackPanel>
+                    <Label x:Name="label" Content="    " FontSize="{Binding ActualWidth,ElementName=userControl,Converter={StaticResource FontSizeConverter},Mode=OneWay}" Height="{Binding ActualWidth, ElementName=label, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Button x:Name="TimerButton" Command="{Binding TimerPageCommand}" Click="TimerButton_Click" Content="开始">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Grid x:Name="TimerGrid" Background="Transparent">
+                                    <Label Content="{Binding Content,ElementName=TimerButton}" FontSize="{Binding ActualWidth,ElementName=TimerButton,Converter={StaticResource ButtonFontSizeConverter},Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <!--<Image Width="30" Height="30" Source="/timer.png" />-->
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <EventTrigger RoutedEvent="Grid.MouseDown" SourceName="TimerGrid">
+                                        <BeginStoryboard>
+                                            <Storyboard Storyboard.TargetName="TimerGrid" Storyboard.TargetProperty="Background.Color">
+                                                <ColorAnimation From="#3FAAAAAA" To="#CF999999" Duration="0:0:0.3"/>
+                                                <ColorAnimation From="#CF999999" To="Transparent" Duration="0:0:0.8"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="Grid.MouseEnter" SourceName="TimerGrid">
+                                        <BeginStoryboard>
+                                            <Storyboard Storyboard.TargetName="TimerGrid" Storyboard.TargetProperty="Background.Color">
+                                                <ColorAnimation From="Transparent" To="#3FAAAAAA" Duration="0:0:0.1"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="Grid.MouseLeave" SourceName="TimerGrid">
+                                        <BeginStoryboard>
+                                            <Storyboard Storyboard.TargetName="TimerGrid" Storyboard.TargetProperty="Background.Color">
+                                                <ColorAnimation From="#3FAAAAAA" To="Transparent" Duration="0:0:0.5"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

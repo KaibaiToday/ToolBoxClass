@@ -1,0 +1,165 @@
+﻿<Window x:Class="ToolBox.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToolBox"
+        xmlns:custom="clr-namespace:ToolBox.View"
+        xmlns:vm="clr-namespace:ToolBox.ViewModel"
+        xmlns:rs ="clr-namespace:ToolBox.Resources"
+        mc:Ignorable="d"
+        Title="MainWindow" MinHeight="450" MinWidth="500" Height="450" Width="500" Background="Transparent" AllowsTransparency="True" WindowStyle="None" SizeChanged="Window_SizeChanged" x:Name="window" Loaded="window_Loaded" Icon="/icon.png" ResizeMode="CanResize" StateChanged="window_StateChanged">
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="10" GlassFrameThickness="0" NonClientFrameEdges="None" CornerRadius="0" UseAeroCaptionButtons="False" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+    <Window.DataContext>
+        <vm:Navigator x:Name="NavigatorVM"/>
+    </Window.DataContext>
+    <Window.Resources>
+        <local:ContainerWidthConverter x:Key="ContainerWidthConverter"/>
+        <local:TitleWidthConverter x:Key="TitleWidthConverter"/>
+        <local:FontSizeConverter x:Key="FontSizeConverter"/>
+        <Storyboard x:Key="ShowWindow">
+            <DoubleAnimation Duration="0:0:0.5" From="0" To="1" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
+        </Storyboard>
+        <Storyboard x:Key="HideWindow">
+            <DoubleAnimation Duration="0:0:0.1" From="1" To="0" Storyboard.TargetProperty="Opacity" FillBehavior="Stop" />
+        </Storyboard>
+    </Window.Resources>
+    <Border x:Name="background" Background="#9F7EA5F1" CornerRadius="10" ClipToBounds="True" BorderBrush="#3F000000" BorderThickness="0.5">
+        <Grid Background="Transparent">
+            <Grid.Clip>
+                <RectangleGeometry x:Name="GridRect" RadiusX="10" RadiusY="10">
+                    <RectangleGeometry.Rect>
+                        <Rect X="0" Y="0" Width="500" Height="450"/>
+                    </RectangleGeometry.Rect>
+                </RectangleGeometry>
+            </Grid.Clip>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel x:Name="LeftBar" Width="50" HorizontalAlignment="Left" Background="White" Height="{Binding Height,ElementName=background,Mode=OneWay}">
+                    <Button Height="50" x:Name="HomeButton" Command="{Binding HomePageCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Grid x:Name="ChattingGrid" Background="#9F90BBDC">
+                                    <Image Width="40" Height="40" Source="/icon.png" />
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <EventTrigger RoutedEvent="Grid.MouseDown" SourceName="ChattingGrid">
+                                        <BeginStoryboard>
+                                            <Storyboard Storyboard.TargetName="ChattingGrid" Storyboard.TargetProperty="Background.Color">
+                                                <ColorAnimation From="#9F90BBDC" To="#FF999999" Duration="0:0:0.3"/>
+                                                <ColorAnimation From="#FF999999" To="#9F90BBDC" Duration="0:0:0.8"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="Grid.MouseEnter" SourceName="ChattingGrid">
+                                        <BeginStoryboard>
+                                            <Storyboard Storyboard.TargetName="ChattingGrid" Storyboard.TargetProperty="Background.Color">
+                                                <ColorAnimation From="#9F90BBDC" To="#FFAAAAAA" Duration="0:0:0.1"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="Grid.MouseLeave" SourceName="ChattingGrid">
+                                        <BeginStoryboard>
+                                            <Storyboard Storyboard.TargetName="ChattingGrid" Storyboard.TargetProperty="Background.Color">
+                                                <ColorAnimation From="#FFAAAAAA" To="#9F90BBDC" Duration="0:0:0.5"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <StackPanel x:Name="Navigator" Width="50" Margin="0,0,0,0">
+                        <Button Height="50" x:Name="TimerButton" Command="{Binding TimerPageCommand}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Grid x:Name="TimerGrid" Background="Transparent">
+                                        <Image Width="30" Height="30" Source="/timer.png" />
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <EventTrigger RoutedEvent="Grid.MouseDown" SourceName="TimerGrid">
+                                            <BeginStoryboard>
+                                                <Storyboard Storyboard.TargetName="TimerGrid" Storyboard.TargetProperty="Background.Color">
+                                                    <ColorAnimation From="#FFAAAAAA" To="#FF999999" Duration="0:0:0.3"/>
+                                                    <ColorAnimation From="#FF999999" To="#FFFFFFFF" Duration="0:0:0.8"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="Grid.MouseEnter" SourceName="TimerGrid">
+                                            <BeginStoryboard>
+                                                <Storyboard Storyboard.TargetName="TimerGrid" Storyboard.TargetProperty="Background.Color">
+                                                    <ColorAnimation From="#FFFFFFFF" To="#FFAAAAAA" Duration="0:0:0.1"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="Grid.MouseLeave" SourceName="TimerGrid">
+                                            <BeginStoryboard>
+                                                <Storyboard Storyboard.TargetName="TimerGrid" Storyboard.TargetProperty="Background.Color">
+                                                    <ColorAnimation From="#FFAAAAAA" To="#FFFFFFFF" Duration="0:0:0.5"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+                <Grid x:Name="Container" Width="{Binding Width,ElementName=window,Mode=OneWay,Converter={StaticResource ContainerWidthConverter}}" Background="Transparent">
+                    <Grid x:Name="ButtonBar" Height="50" Width="{Binding Width, ElementName=Container}" Background="Transparent" VerticalAlignment="Top" HorizontalAlignment="Right" MouseLeftButtonDown="ButtonBar_MouseLeftButtonDown">
+                        <Grid x:Name="TitleBar" HorizontalAlignment="Center" Width="{Binding Width, ElementName=ButtonBar,Converter={StaticResource TitleWidthConverter}}">
+                            <Label x:Name="Title" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{Binding Width,ElementName=TitleBar,Converter={StaticResource FontSizeConverter}}"/>
+                        </Grid>
+                        <StackPanel Background="#7F7EA5F1" Width="120" HorizontalAlignment="Right" Orientation="Horizontal" Height="30" VerticalAlignment="Top">
+                            <Button x:Name="MinimizeButton" Width="40" Background="#0FFFFFFF" Click="MinimizeButton_Click">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Grid x:Name="MinimizeGrid" Background="Transparent">
+                                            <Path Stretch="Uniform" Width="13" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path118" Fill="#FF5C5C66" Data="M917.333333 554.666667H106.666667a21.333333 21.333333 0 0 1 0-42.666667h810.666666a21.333333 21.333333 0 0 1 0 42.666667z"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="MinimizeGrid" Property="Background" Value="#9FB9D7FF"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <Button x:Name="MaximizeButton" Width="40" Background="#0FFFFFFF" Click="MaximizeButton_Click">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Grid x:Name="MaximizeGrid" Background="Transparent">
+                                            <Path Stretch="Uniform" Width="10" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path2" Fill="#000000" Data="M199.111111 256v512h625.777778v-512z m56.888889 455.111111v-341.333333h512v341.333333z"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="MaximizeGrid" Property="Background" Value="#9FB9D7FF"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <Button x:Name="CloseButton" Width="40" Background="#0FFFFFFF" Click="CloseButton_Click">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Grid x:Name="CloseGrid" Background="Transparent">
+                                            <Path Stretch="Uniform" Width="10" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path2" Fill="#FF444444" Data="M558.933333 529.066667l285.866667 285.866666-29.866667 29.866667-285.866666-285.866667-285.866667 285.866667-29.866667-29.866667 285.866667-285.866666L213.333333 243.2l29.866667-29.866667 285.866667 285.866667L814.933333 213.333333l29.866667 29.866667-285.866667 285.866667z"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="CloseGrid" Property="Background" Value="#FFCF0000"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                    <!--<custom:ChattingRoom Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=grid, Mode=OneWay}"/>-->
+                    <ContentControl x:Name="Pages" Content="{Binding CurrentView}" Width="{Binding Width,Converter={StaticResource ContainerWidthConverter}, ElementName=window, Mode=OneWay}" Panel.ZIndex="4" Margin="0,50,0,0"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "fxJ1kWL/X5MySGAAMz77/OAic4uEcU1q7Qmk8WuaZaQMhoqlMY9tc4Mh8B1mdklaF2MHM6hlKq0Ig9N0sY0Q/Q==",
+  "success": true,
+  "projectFilePath": "D:\\zjh\\c#\\ClassToolBox\\ToolBox\\ToolBox.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\92912\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\6.0.13\\microsoft.netcore.app.runtime.win-x86.6.0.13.nupkg.sha512",
+    "C:\\Users\\92912\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\6.0.13\\microsoft.windowsdesktop.app.runtime.win-x86.6.0.13.nupkg.sha512",
+    "C:\\Users\\92912\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\6.0.13\\microsoft.aspnetcore.app.runtime.win-x86.6.0.13.nupkg.sha512",
+    "C:\\Users\\92912\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.13\\microsoft.netcore.app.crossgen2.win-x64.6.0.13.nupkg.sha512"
+  ],
+  "logs": []
+}

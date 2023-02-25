@@ -1,0 +1,5 @@
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\ToolBox.pdb
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\Resources\bg.png
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\Resources\location.sta
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\Resources\range.sta
+D:\zjh\c#\ClassToolBox\ToolBox\bin\None_Runtime_Publish\ToolBox.exe
